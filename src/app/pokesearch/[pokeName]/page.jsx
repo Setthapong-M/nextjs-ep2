@@ -9,8 +9,6 @@ function PokeResult() {
 
     const params = useParams();
 
-    console.log(params)
-
     const [pokeData, setPokeData] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -18,14 +16,12 @@ function PokeResult() {
 
     const fetchPokeData = async () => {
         try {
-            setLoading(true)
+            setLoading(true);
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokeName}`)
             const data = await response.json();
-            setLoading(false)
-
-            setPokeData(data)
-
-        } catch (error) {
+            setPokeData(data);
+            setLoading(false);
+        } catch(error) {
             console.log(error)
         }
     }
@@ -36,15 +32,15 @@ function PokeResult() {
 
   return (
     <div className='p-24'>
-        <Link href='/' className='bg-blue-500 text-white p-3 rounded-md'>Go back</Link>
+        <Link href="/" className='bg-blue-500 text-white p-3 rounded-md'>Go back</Link>
         <div className='flex justify-center items-center mt-10 text-center'>
-            <div className='shadow-md p-10 rounded-md flex flex-col justify-center items-center'>
+            <div className='shadow-md p-10 rounded-md'>
                 {loading ? (
                     <p>Loading...</p>
                 ) : (
                     <>
                         <h3 className='text-3xl'>{pokeData.name}</h3>
-                        <Image src={pokeData.sprites?.other.dream_world.front_default} width={150} height={150} alt='image pokeData'/>
+                        <Image src={pokeData.sprites?.other.home.front_default} width={300} height={300} alt={pokeData.name} />
                         <div className='mt-5'>
                             <p className='my-3'>Weight: {pokeData.weight}</p>
                             <p className='my-3'>

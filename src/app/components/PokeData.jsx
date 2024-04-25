@@ -34,7 +34,7 @@ function PokeData() {
         ) : (
             <div className='grid grid-cols-5'>
                 {poke.map((val, index) => (
-                    <Link key={val.name} href={`/pokeinfo/[id]`} as={`pokeinfo/${index + 1}`}>
+                    <Link key={val.name} href={`/pokeinfo/[id]`} as={`/pokeinfo/${index + 1}`}>
                         <div key={index} className='flex justify-center items-center shadow-md transition cursor-pointer hover:shadow-lg m-3 rounded-xl'>
                             <div>
                                 <h3>{val.name}</h3>

@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 
-function page() {
+function PokeInfo() {
 
     const params = useParams();
     console.log(params)
@@ -16,32 +16,32 @@ function page() {
 
     useEffect(() => {
         setLoading(true);
-        const fetchPokeDetail = async () => {
+        const fetchPokeDetails = async () => {
             try {
                 const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`);
                 const pokeData = await response.json();
-
-                setPoke(pokeData);
-            } catch (error) {
+                setPoke(pokeData)
+            } catch(error) {
                 console.log(error)
-            }setLoading(false)
+            }
+            setLoading(false);
         }
-        fetchPokeDetail();
+        fetchPokeDetails();
     }, [])
 
     console.log(poke)
 
   return (
     <div className='p-24'>
-        <Link href='/' className='bg-blue-500 text-white p-3 rounded-md'>Go back</Link>
+        <Link href="/" className='bg-blue-500 text-white p-3 rounded-md'>Go back</Link>
         <div className='flex justify-center items-center mt-10 text-center'>
-            <div className='shadow-md p-10 rounded-md flex flex-col justify-center items-center'>
+            <div className='shadow-md p-10 rounded-md'>
                 {loading ? (
                     <p>Loading...</p>
                 ) : (
                     <>
-                        <h3 className='text-3xl mb-3'>{poke.name}</h3>
-                        <Image src={poke.sprites?.other.dream_world.front_default} width={150} height={150} alt='image poke'/>
+                        <h3 className='text-3xl'>{poke.name}</h3>
+                        <Image src={poke.sprites?.other.home.front_default} width={300} height={300} alt={poke.name} />
                         <div className='mt-5'>
                             <p className='my-3'>Weight: {poke.weight}</p>
                             <p className='my-3'>
@@ -65,4 +65,4 @@ function page() {
   )
 }
 
-export default page
+export default PokeInfo
